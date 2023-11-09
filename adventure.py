@@ -1,4 +1,8 @@
 import random
+import os
+
+def clearscreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 class style:
    LOSE = "\033[1m" + "\033[41m"
@@ -7,7 +11,7 @@ class style:
    END = "\033[0m"
 
 
-venues = [["Roses", "Olfe", "Südblock", "Silverfuture", "Rauschgold", "Woof", "Tipsy Bear"] ,["Schwuz","Chantal's", "SO36"]]
+venues = [["Roses", "Olfe", "Südblock", "Silverfuture", "Rauschgold", "Woof"] ,["Schwuz","Chantal's", "SO36"]]
 bars = venues[0]
 clubs = venues[1]
 cash = 0
@@ -37,6 +41,7 @@ while cash < 30 or cash > 75:
 print("Fantastic, then lets get going. I think you're gonna really enjoy this first place.\nLove your outfit by the way! I think you'll manage to flirt your way into some free drinks, but watch out, people might convince you to buy drinks for them")
 
 input("press a key\n")
+clearscreen()
 
 room = random.choice(bars)
 
@@ -54,7 +59,7 @@ while cash > 0 and visits < 4:
                 cash -= 12
         elif flirt == "no" or flirt == "n":
             cash -= 8
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            print("Don't worry, maybe we can try in the next place after we loosen up a little.")
         venues[0].remove("Roses")
 
     elif room == "Olfe":
@@ -69,7 +74,7 @@ while cash > 0 and visits < 4:
                 cash -= 18
         elif flirt == "no" or flirt == "n":
             cash -= 12
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            print("It's fine, we can try at the next place.")
         # visits += 1
         venues[0].remove("Olfe")
 
@@ -86,7 +91,7 @@ while cash > 0 and visits < 4:
                 cash -= 18
         elif flirt == "no" or flirt == "n":
             cash -= 12
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            print("Yeah, it's a bit too hectic here, we can be more bold at a more intimate setting.")
         # visits += 1
         venues[0].remove("Südblock")
 
@@ -102,7 +107,7 @@ while cash > 0 and visits < 4:
                 cash -= 26
         elif flirt == "no" or flirt == "n":
             cash -= 18
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            print("Yeah, I'm not feeling the flirty vibe here, but we can think about it somewhere else.")
         # visits += 1
         venues[0].remove("Silverfuture")
 
@@ -118,47 +123,31 @@ while cash > 0 and visits < 4:
                 cash -= 15
         elif flirt == "no" or flirt == "n":
             cash -= 10
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            print("So many people makes it intimidating, lets try our luck at another bar.")
         # visits += 1
         venues[0].remove("Rauschgold")
 
     elif room == "Woof":
-        print("""You plop down on a sofa in Silverfuture.\nA very nice comfy bar where you can have some cocktails without a worry about who you are, or what your drink choice is... Why not get that Raspberry Daiquiri?""")
-        flirt = input("Omg, people are looking at you like they like you, maybe someone will buy you a drink!\nFlirt? (Yes/No)\n").lower().strip()
+        print("""This place seems seedy but it's not that bad. People get much more friendly towards the back, if you know what I mean.""")
+        flirt = input("Oh you already made some friends over there? See if you can get them to buy us some drinks.\nFlirt? (Yes/No)\n").lower().strip()
         if flirt == "yes" or flirt == "y":
             chance = random.choice([True, False])
             if chance == True:
-                print("OMG! Free drinks! YAY!\n")
+                print("Gulp, that daddy was generous!\n")
             else:
-                print("Oh well, maybe in the next place\n")
+                print("What's with the broke daddies here!\n")
                 cash -= 12
         elif flirt == "no" or flirt == "n":
-            cash -= 12
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
+            cash -= 8
+            print("Yeah, people here seem kinda shy and not like they'd be open to banter.")
         # visits += 1
         venues[0].remove("Woof")
 
-    elif room == "Tipsy Bear":
-        print("""You plop down on a sofa in Silverfuture.\nA very nice comfy bar where you can have some cocktails without a worry about who you are, or what your drink choice is... Why not get that Raspberry Daiquiri?""")
-        flirt = input("Omg, people are looking at you like they like you, maybe someone will buy you a drink!\nFlirt? (Yes/No)\n").lower().strip()
-        if flirt == "yes" or flirt == "y":
-            chance = random.choice([True, False])
-            if chance == True:
-                print("OMG! Free drinks! YAY!\n")
-            else:
-                print("Oh well, maybe in the next place\n")
-                cash -= 12
-        elif flirt == "no" or flirt == "n":
-            cash -= 12
-            print("Don't worry, maybe we can try in the next place after we loosen up a little")
-        # visits += 1
-        venues[0].remove("Tipsy Bear")
-
     elif room != bars:
-        print("Uh, we can't go to that bar, one of my exes is there")
+        print("Uh, we can't go to that bar, one of my exes is a bartender there")
 
     if cash <= 0:
-        print("OMG, we ran out of cash! I'm not even drunk and didn't get to make out with anyone!\nWhatever, lets get some beers at the Späti and go to the park\n" + style.LOSE + "You Lose!" + style.END)
+        print("OMG, we ran out of cash! I'm not even drunk and didn't get to make out with anyone!\nWhatever, lets get some beers at the Späti and go hang out at the park\n" + style.LOSE + "You Lose!" + style.END)
         exit()
 
     print(f"You have {cash} left")
@@ -168,25 +157,26 @@ while cash > 0 and visits < 4:
         room = input("Where do you want to go next?\nWe can go to " + style.BOLD + ", ".join(bars) + style.END + ", or whatever you suggest\n").strip()
     
 
-
 print("\nI'm so lit and I want to dance! Are you ready for the club?\n")
 input("press a key\n")
+
+clearscreen()
 
 room = input("There's a bunch of parties we could go to tonight. I think the good ones are gonna be " + style.BOLD + ", ".join(clubs) + style.END + ", but I'm open to suggestions, it's your choice...\n").strip()
 
 while room not in clubs:
-    print("I'm blacklisted from that club, once I got very messy there")
+    print("I'm blacklisted from that club... lets just say things got very messy there once...")
     room = input("Lets just go to " + style.BOLD + ", ".join(clubs) + style.END + ", what do you think?\n").strip()
 
 if room == "Schwuz":
     if cash >= 25:
-        print("""The line was long, but we're finally inside SchwuZ!\nIt's the club! Somehow this intense industrial interior feels like home, right?.""")
+        print("""It's good we had enough to get in. That line was long, but we're finally inside SchwuZ!\nIt's the club! Somehow this intense industrial interior feels like home, right?.""")
     elif cash < 25:
         guest = input("LOL! We spent all our cash at the bars! Let's try to pretend we have guestlist. You're in?\n").lower().strip()
         if guest == "yes" or guest == "y":
             chance = random.choice([True, False])
             if chance == True:
-                print("YAAAS! WE got in!\n")
+                print("YAAAS! WE got in! Let's PARTY!!\n")
             else:
                 print("Damn, I thought I could get us in, it's worked before. I'm sorry, I guess we'll have to go home... no club for us\n" + style.LOSE + "You Lose!" + style.END)
                 exit()
@@ -196,36 +186,35 @@ if room == "Schwuz":
 
 elif room == "Chantal's":
     if cash >= 20:
-        print("""A seasoned drag queen is slurring something into the mic that nobody seems to be paying attention to. It's a rowdy crowd that wants to party and make a mess.""")
+        print("""It's good we still had some money left. We made it just in time for the show! I mean, the show is mostly Chantal herself slurring on the mic, but that's part of the charm... that, and the debauchery!""")
     elif cash < 20:
-        guest = input("LOL! We spent all our cash at the bars! Let's try to pretend we have guestlist. You're in?\n").lower().strip()
+        guest = input("Gurl, we're out of money! I think I know a back entrance where we can sneak in. You wanna try?\n").lower().strip()
         if guest == "yes" or guest == "y":
             chance = random.choice([True, False])
             if chance == True:
-                print("YAAAS! WE got in!\n")
+                print("See? Pretending you know what you're doing is all you need. Time to party!!\n")
             else:
-                print("Damn, I thought I could get us in, it's worked before. I'm sorry, I guess we'll have to go home... no club for us\n" + style.LOSE + "You Lose!" + style.END)
+                print("Oh no! The secret entrance was closed! They must have realized people were sneaking in.\n" + style.LOSE + "You Lose!" + style.END)
                 exit()
         else:
-            print("I get it, this bouncer looks very intimidating. I'm also very drunk, let's call it a night and go home.\n" + style.LOSE + "You Lose!" + style.END)
+            print("Yeah, climbing that rusty fence and jumping over those bushes doesn't seem like the safest. Let's just go.\n" + style.LOSE + "You Lose!" + style.END)
             exit()
 
 elif room == "SO36":
     if cash >= 20:
-        print("""The line was long, but you're finally inside SchwuZ!\nIt's the club! Somehow this intense industrial interior feels like home to you. ...""")
+        print("""Great, we had enough for the cover and some drinks. There's a Drag Queen Pageant tonight! This is gonna be fun! Wooo!!!""")
     elif cash < 20:
-        guest = input("LOL! We spent all our cash at the bars! Let's try to pretend we have guestlist. You're in?\n").lower().strip()
+        guest = input("Oh No! We don't have enough money, hold on, I think I know that Drag Queen by the door. You want me to try to get us in?\n").lower().strip()
         if guest == "yes" or guest == "y":
             chance = random.choice([True, False])
             if chance == True:
-                print("YAAAS! WE got in!\n")
+                print("She's the best! She even gave me a drink ticket! Let's go have fun!\n")
             else:
-                print("Damn, I thought I could get us in, it's worked before. I'm sorry, I guess we'll have to go home... no club for us\n" + style.LOSE + "You Lose!" + style.END)
+                print("Oh no! She pretended she doesn't know me!! I'm heartbroken!\n" + style.LOSE + "You Lose!" + style.END)
                 exit()
         else:
-            print("I get it, this bouncer looks very intimidating. I'm also very drunk, let's call it a night and go home.\n" + style.LOSE + "You Lose!" + style.END)
+            print("Yeah this drag queen looks very tall in her heels and huge wig! I'm scared to even approach her.\n" + style.LOSE + "You Lose!" + style.END)
             exit()
-
 
 
 print("What a night!! This was so much fun! Lets do it all over again next week, I'm definitely not too old and totally have the energy for this.\n" + style.WIN + "You Win!" + style.END)
